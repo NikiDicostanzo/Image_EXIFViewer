@@ -1,15 +1,26 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'prova1.ui'
+# Form implementation generated from reading ui file 'main_window_ui.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QLabel
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+class View_ui(QLabel):
+
+    def __init__(self, MainWindow, controller):
+        
+        QLabel.__init__(self, MainWindow)
+        self.MainWindow = MainWindow
+        self.controller = controller ##
+        self.setupUi()
+
+
+    def setupUi(self):
+        MainWindow = self.MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(572, 479)
         MainWindow.setStyleSheet("background-color: rgb(229, 241, 255);")
@@ -110,12 +121,12 @@ class Ui_MainWindow(object):
         self.actionSave.setText(_translate("MainWindow", "Save"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindow = QtWidgets.QMainWindow()
+#     ui = Ui_MainWindow()
+#     ui.setupUi(MainWindow)
+#     MainWindow.show()
+#     sys.exit(app.exec_())
 

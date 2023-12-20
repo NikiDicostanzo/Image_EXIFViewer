@@ -1,17 +1,20 @@
 # Import stuff
 import sys
 from PyQt5.QtWidgets import QApplication, QPushButton, QMainWindow
+from model import Model
+from controller import Controller
+from view import View
 
 # Use a __main__ guard, you never know.
 if __name__ == '__main__':
     # Create our application -- MUST be done first.
     app = QApplication(sys.argv)
 
-    # Create a main window with a single QLabel.
-    window = QMainWindow()
-    button = QPushButton('Hello PyQT5!')
-    window.setCentralWidget(button)
-
+    # MVC
+    model = Model()
+    controller = Controller(model)
+    window = View(controller)
+    
     # Show the main window and call main loop.
     window.show()
-    app.exec_()
+    sys.exit(app.exec_())
