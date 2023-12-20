@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QLabel, QGridLayout
 
 class View_ui(QLabel):
 
@@ -24,8 +24,14 @@ class View_ui(QLabel):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(572, 479)
         MainWindow.setStyleSheet("background-color: rgb(229, 241, 255);")
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+
+         #--
+        self.gridLayout = QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
+
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(490, 400, 75, 24))
         self.pushButton.setObjectName("pushButton")
@@ -99,6 +105,14 @@ class View_ui(QLabel):
         self.menuprova.addAction(self.actionApri)
         self.menuprova.addAction(self.actionSave)
         self.menubar.addAction(self.menuprova.menuAction())
+
+
+        #My image in window
+        self.label_image = QLabel(self.centralwidget)
+        self.label_image.setGeometry(QtCore.QRect(10, 30, 431, 501))
+        self.label_image.setText("")
+        self.label_image.setObjectName("label_image")
+        self.gridLayout.addWidget(self.label_image, 0, 0, 1, 4)
 
         self.retranslateUi(MainWindow)
         self.tabWidgetInf.setCurrentIndex(0)
