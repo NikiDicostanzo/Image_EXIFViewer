@@ -1,0 +1,39 @@
+Controllers can always talk directly to their Model.
+Controllers can also talk directly to their View.
+
+!! The Model and View should never speak to each other. !! 
+
+Can the View speak to its Controller?
+  Communication is “blind” and structured. 
+  The Controller can drop a target on itself. Then hand out an action to the View
+  -> The View sends the action when things happen in the UI
+  
+  Sometimes the View needs to synchronize with the Controller
+  -> The Controller sets itself as the View’s delegate
+  The delegate is set via a protocol (i.e. it’s “blind” to class).
+  Views do not own the data they display. So, if needed, they have a protocol to acquire it.
+
+  Controllers are almost always that data source (not Model!).
+  Controllers interpret/format Model information for the View.
+
+Can the Model talk directly to the Controller?
+  No. The Model is (should be) UI independent
+  So what if the Model has information to update or something?
+  It uses a “radio station”-like broadcast mechanism.
+  Controllers (or other Model) “tune in” to interesting stuff.
+  A View might “tune in,” but probably not to a Model’s “station.”
+
+
+#####
+
+• Visualization of images: your GUI must support visualization of JPEG images (one at a time).
+Images should be scaled to have a maximum dimension (height or width) of 512 pixels.
+• Visualization of image EXIF data: your GUI must list all EXIF tags encoded in the JPEG file.
+If the number of tags is too great to view in the application window, your GUI must provide a
+scrolling widget to view them all.
+• Rescaling: the main window of your GUI must support rescaling. That is, when the user
+resizes the application, the user interface must scale, and most importantly the image should
+scale appropriately.
+• Image rotation: your GUI must support rotation of the image in 90◦
+increments. The GUI
+should support both a button (or menu) interface to access the rotation, and a hotkey interface.
