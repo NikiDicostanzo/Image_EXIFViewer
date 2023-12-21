@@ -64,6 +64,8 @@ class View_ui(QLabel):
         icon2.addPixmap(QtGui.QPixmap("icons/right-arrow2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon2)
         self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_4.clicked.connect(MainWindow.left)
+
         self.gridLayout.addWidget(self.pushButton_4, 1, 2, 1, 1)
 
         #<- sx
@@ -74,6 +76,7 @@ class View_ui(QLabel):
         icon3.addPixmap(QtGui.QPixmap("icons/right-arrow.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_5.setIcon(icon3)
         self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_5.clicked.connect(MainWindow.right)
         self.gridLayout.addWidget(self.pushButton_5, 1, 3, 1, 1)
 
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)

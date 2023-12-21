@@ -11,3 +11,19 @@ class Controller:
     
     def get_image(self):
         return self.model.get_image()
+    
+    def get_length(self):
+        return len(self.get_images())
+    
+    def get_images(self):
+        return self.model.get_images()
+    
+    def add_image(self, name):
+        self.model.add_image(name)
+        self.set_image(name)
+    
+    def get_image_index(self, index):
+        image = self.model.get_image_index(index)
+        self.model.set_image(image)
+
+    
