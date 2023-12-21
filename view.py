@@ -31,6 +31,8 @@ class View(QMainWindow):
             self.controller.add_image(image)
             self.index = self.controller.get_length() # last image
             self.show_image()
+
+            self.controller.get_info()##Pritn data
     
     def show_image(self):
         if  self.angle==0:

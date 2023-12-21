@@ -26,4 +26,6 @@ class Controller:
         image = self.model.get_image_index(index)
         self.model.set_image(image)
 
+    def get_info(self):
+       return self.model.save_info()
     

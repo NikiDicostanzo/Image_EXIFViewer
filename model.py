@@ -1,3 +1,4 @@
+from PIL import Image
 
 #Model of MVC
 class Model:
@@ -24,4 +25,8 @@ class Model:
     def get_image_index(self, index):
         self.image =  self.images[index]
         return self.images[index]
-        
+    
+    def save_info(self):
+        if self.image !='':
+            image = Image.open(self.image)
+            print(image.format, image.filename) #Data image
