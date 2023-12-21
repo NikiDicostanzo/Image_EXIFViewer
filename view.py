@@ -1,9 +1,9 @@
 """ Main function """
 
 from PyQt5.QtWidgets import QMainWindow, QFileDialog
-from PyQt5.QtGui import  QPixmap
+from PyQt5.QtGui import  QPixmap, QTransform
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 
 from view_ui import View_ui
 from model import Model
@@ -16,8 +16,10 @@ class View(QMainWindow):
         self.controller = controller
         # print("super: ", super().parent)
         self.ui = View_ui(self, self.controller)
+
         self.index = 0
-      
+        self.angle=0
+
         self.ui.actionApri.triggered.connect(self.add_image)
 
 
@@ -31,9 +33,14 @@ class View(QMainWindow):
             self.show_image()
     
     def show_image(self):
+        if  self.angle==0:
             self.qpix_image = QPixmap(self.controller.get_image())
             pixmap_resized = self.qpix_image.scaled(500, 500, Qt.KeepAspectRatio) #Resize image
             self.ui.label_image.setPixmap(pixmap_resized)# show image
+        else:
+            self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
+                                            Qt.KeepAspectRatio, Qt.FastTransformation))
+            self.angle=0
        
 
     def left(self):
@@ -44,10 +51,27 @@ class View(QMainWindow):
                 self.show_image()
                 print('qui',self.controller.get_image())
                 
-                
+
     def right(self):
         print("dx", self.index)
         if self.index < self.controller.get_length() :
                 self.index += 1
                 self.controller.get_image_index(self.index-1) #parto da 0
                 self.show_image()
+
+
+    def rotate_left(self):
+
+        if self.controller.get_image() is not None:
+            self.angle -= 90
+            transform = QTransform().rotate(self.angle)
+            self.qpix_image = self.qpix_image.transformed(transform, Qt.SmoothTransformation)
+            self.show_image()
+    
+    def rotate_right(self):
+
+        if self.controller.get_image() is not None:
+            self.angle += 90
+            transform = QTransform().rotate(self.angle)
+            self.qpix_image = self.qpix_image.transformed(transform, Qt.SmoothTransformation)
+            self.show_image()

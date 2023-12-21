@@ -44,6 +44,7 @@ class View_ui(QLabel):
         icon.addPixmap(QtGui.QPixmap("icons/arrow-left.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_rotL.setIcon(icon)
         self.pushButton_rotL.setObjectName("pushButton_rotL")
+        self.pushButton_rotL.clicked.connect(self.MainWindow.rotate_left)
         self.gridLayout.addWidget(self.pushButton_rotL, 1, 0, 1, 1)
 
         #Rot dx
@@ -54,6 +55,7 @@ class View_ui(QLabel):
         icon1.addPixmap(QtGui.QPixmap("icons/arrow-left2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_rotR.setIcon(icon1)
         self.pushButton_rotR.setObjectName("pushButton_rotR")
+        self.pushButton_rotR.clicked.connect(self.MainWindow.rotate_right)
         self.gridLayout.addWidget(self.pushButton_rotR, 1, 1, 1, 1)
 
         #-> dx
