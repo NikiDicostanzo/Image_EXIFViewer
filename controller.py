@@ -29,3 +29,6 @@ class Controller:
     def get_info(self):
        return self.model.save_info()
     
+    def set_info(self):
+        self.model.save_info()
+    
