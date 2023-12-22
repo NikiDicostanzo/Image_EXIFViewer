@@ -49,3 +49,23 @@ class Model:
     
     def set_info(self):
         self.save_info()
+    
+    def save_exif(self):
+        self.set_exif={}
+        img = Image.open(self.image)
+        print(self.image.format)
+        if img._getexif() is None:
+            print('NO exif')
+        else:
+            print('Si exif')
+            if img.format == 'PNG':
+                for tag, value in img.info.items():
+                    decoded = TAGS.get(tag, tag)
+                    self.exif[decoded] = value
+            else:
+                self.exif = {TAGS[k]: v
+                                for k, v in img._getexif().items()
+                                    if k in TAGS
+                            }
+        print("qui",self.exif)
+        
