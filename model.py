@@ -49,9 +49,8 @@ class Model:
         img = Image.open(self.image)
         print(self.image.format)
         if img._getexif() is None:
-            print('NO exif')
+            print('Exif non presenti')
         else:
-            print('Si exif')
             if img.format == 'PNG':
                 for tag, value in img.info.items():
                     decoded = TAGS.get(tag, tag)
@@ -61,7 +60,7 @@ class Model:
                                 for k, v in img._getexif().items()
                                     if k in TAGS
                             }
-        print("qui",self.exif)
+            print("Exif data: ",self.exif)
 
     def get_info(self):
         return self.info
@@ -74,4 +73,6 @@ class Model:
     
     def set_exif(self):
         self.save_exif()
+    
+    
         

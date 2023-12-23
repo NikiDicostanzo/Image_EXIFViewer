@@ -3,7 +3,7 @@
 class Controller:
 
     def __init__(self, model):
-        self.model = model #Richiamo il model!!!
+        self.model = model 
 
 
     def set_image(self, name): #aggiorna immagine
