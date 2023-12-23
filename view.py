@@ -32,8 +32,11 @@ class View(QMainWindow):
             self.index = self.controller.get_length() # last image
             self.show_image()
 
-            self.controller.set_info()
-            self.controller.set_exif()
+        self.controller.set_image(image) # update image
+        ###
+        self.controller.set_info()
+        self.controller.set_exif()
+           
     
     def show_image(self):
         if  self.angle==0:
@@ -44,6 +47,8 @@ class View(QMainWindow):
             self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
                                             Qt.KeepAspectRatio, Qt.FastTransformation))
             self.angle=0
+        
+        
        
 
     def left(self):
@@ -53,7 +58,11 @@ class View(QMainWindow):
                 self.controller.get_image_index(self.index-1) #parto da 0
                 self.show_image()
                 print('qui',self.controller.get_image())
-                
+
+                ###
+                self.controller.set_info()
+                self.controller.set_exif()
+                        
 
     def right(self):
         print("dx", self.index)
@@ -61,6 +70,10 @@ class View(QMainWindow):
                 self.index += 1
                 self.controller.get_image_index(self.index-1) #parto da 0
                 self.show_image()
+
+                ###
+                self.controller.set_info()
+                self.controller.set_exif()
 
 
     def rotate_left(self):

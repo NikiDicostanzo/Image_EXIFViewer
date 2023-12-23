@@ -8,8 +8,8 @@ class Controller:
 
     def set_image(self, name): #aggiorna immagine
         self.model.set_image(name) 
-        self.model.save_exif()
-    
+
+ 
     def get_image(self):
         return self.model.get_image()
     
@@ -28,11 +28,14 @@ class Controller:
         self.model.set_image(image)
 
     def get_info(self):
-       return self.model.save_info()
+       return self.model.set_info()
     
     def set_info(self):
-        self.model.save_info()
+        self.model.get_info()
     
     def set_exif(self):
-        self.model.save_exif()
+        self.model.set_exif()
+    
+    def get_exif(self):
+        return self.model.get_exif()
     

@@ -43,15 +43,9 @@ class Model:
             self.info['Data creazione'] = time.ctime(os.path.getctime(image.filename))
             self.info['Ultima modifica'] = time.ctime(os.path.getmtime(image.filename))
             print("INFO", self.info)
-            
-    def get_info(self):
-        return self.info
-    
-    def set_info(self):
-        self.save_info()
     
     def save_exif(self):
-        self.set_exif={}
+        self.exif={}
         img = Image.open(self.image)
         print(self.image.format)
         if img._getexif() is None:
@@ -68,4 +62,16 @@ class Model:
                                     if k in TAGS
                             }
         print("qui",self.exif)
+
+    def get_info(self):
+        return self.info
+    
+    def set_info(self):
+        self.save_info()
+    
+    def get_exif(self):
+        return self.exif
+    
+    def set_exif(self):
+        self.save_exif()
         
