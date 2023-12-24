@@ -28,10 +28,10 @@ class Controller:
         self.model.set_image(image)
 
     def get_info(self):
-       return self.model.set_info()
+       return self.model.get_info()
     
     def set_info(self):
-        self.model.get_info()
+        self.model.set_info()
     
     def set_exif(self):
         self.model.set_exif()

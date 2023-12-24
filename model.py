@@ -43,12 +43,12 @@ class Model:
             self.info['Dimensione immagine'] = image.size
             self.info['Data creazione'] = time.ctime(os.path.getctime(image.filename))
             self.info['Ultima modifica'] = time.ctime(os.path.getmtime(image.filename))
-            print("INFO", self.info)
+            print("INFO2121", self.info)
     
     def save_exif(self):
         self.exif={}
         img = Image.open(self.image)
-        print('Qui',self.image.format)
+        #print('Qui',self.image.format)
         if img._getexif() is None:
             print('Exif non presenti')
         else:
