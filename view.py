@@ -29,7 +29,6 @@ class View(QMainWindow):
             self.controller.add_image(image)
             self.index = self.controller.get_length() # last image
             self.show_image()
-            print('INFOO', self.controller.get_info())
          
             
     def show_image(self):
@@ -38,11 +37,10 @@ class View(QMainWindow):
             self.qpix_image = QPixmap(self.controller.get_image())
             pixmap_resized = self.qpix_image.scaled(500, 500, Qt.KeepAspectRatio) #Resize image
             self.ui.label_image.setPixmap(pixmap_resized)# show image
-              #All data
-            self.controller.set_info()##Pritn data
+            #All data
+            self.controller.set_info()
             self.controller.set_exif()
             self.tab_data()
-            
         else:
             self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
                                             Qt.KeepAspectRatio, Qt.FastTransformation))
@@ -83,7 +81,8 @@ class View(QMainWindow):
         exif = self.controller.get_exif()
         self.updateInfo(info)
         self.tab_exif_ui(exif)
-        
+
+    #Write general data    
     def updateInfo(self, info):
         self.ui.tabWidgetInf.clear() #delete old
         print('LEn',(info))
@@ -106,6 +105,7 @@ class View(QMainWindow):
             tab.setLayout(layout)
         self.ui.tabWidgetInf.addTab(tab, "Generali")
 
+    #Write exif data 
     def tab_exif_ui(self, exif):        
         tab_exif =  QWidget() #self.ui.tab
         if exif is not None:
@@ -127,11 +127,11 @@ class View(QMainWindow):
         self.ui.tabWidgetInf.addTab(tab_exif, "Exif")
 
     def writeTab(self, widget, data):
-
         self.widget = widget
         self.widget.clear()
         self.writeData(self.widget.invisibleRootItem(), data)
 
+    ## QTreeWidgetItem
     def writeData(self, item, data):
         item.setExpanded(True)
         if type(data) is dict:

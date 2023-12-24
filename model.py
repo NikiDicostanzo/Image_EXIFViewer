@@ -43,7 +43,7 @@ class Model:
             self.info['Dimensione immagine'] = image.size
             self.info['Data creazione'] = time.ctime(os.path.getctime(image.filename))
             self.info['Ultima modifica'] = time.ctime(os.path.getmtime(image.filename))
-            print("INFO2121", self.info)
+            #print("INFO", self.info)
     
     def save_exif(self):
         self.exif={}
