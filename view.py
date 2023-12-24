@@ -6,7 +6,6 @@ from PyQt5.QtGui import  QPixmap, QTransform
 from PyQt5.QtCore import Qt, QSize
 
 from view_ui import View_ui
-from model import Model
 
 ## View of MVC
 class View(QMainWindow):
@@ -22,7 +21,6 @@ class View(QMainWindow):
 
         self.ui.actionApri.triggered.connect(self.add_image)
 
-
     def add_image(self):
         
         image = QFileDialog.getOpenFileName(self, caption='Open an image',
@@ -32,24 +30,20 @@ class View(QMainWindow):
             self.index = self.controller.get_length() # last image
             self.show_image()
 
-        self.controller.set_image(image) # update image
-        ###
-        self.controller.set_info()
-        self.controller.set_exif()
-           
     
     def show_image(self):
         if  self.angle==0:
             self.qpix_image = QPixmap(self.controller.get_image())
             pixmap_resized = self.qpix_image.scaled(500, 500, Qt.KeepAspectRatio) #Resize image
             self.ui.label_image.setPixmap(pixmap_resized)# show image
+            #All data
+            self.controller.set_info()##Pritn data
+            self.controller.set_exif()
         else:
             self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
                                             Qt.KeepAspectRatio, Qt.FastTransformation))
             self.angle=0
-        
-        
-       
+            
 
     def left(self):
         print("sx", self.index)
@@ -58,23 +52,13 @@ class View(QMainWindow):
                 self.controller.get_image_index(self.index-1) #parto da 0
                 self.show_image()
                 print('qui',self.controller.get_image())
-
-                ###
-                self.controller.set_info()
-                self.controller.set_exif()
-                        
-
+                
     def right(self):
         print("dx", self.index)
         if self.index < self.controller.get_length() :
                 self.index += 1
                 self.controller.get_image_index(self.index-1) #parto da 0
                 self.show_image()
-
-                ###
-                self.controller.set_info()
-                self.controller.set_exif()
-
 
     def rotate_left(self):
 

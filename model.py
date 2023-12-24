@@ -1,6 +1,7 @@
 from PIL import Image
 import os
 import time
+from PIL.ExifTags import TAGS
 
 #Model of MVC
 class Model:
@@ -47,7 +48,7 @@ class Model:
     def save_exif(self):
         self.exif={}
         img = Image.open(self.image)
-        print(self.image.format)
+        print('Qui',self.image.format)
         if img._getexif() is None:
             print('Exif non presenti')
         else:
