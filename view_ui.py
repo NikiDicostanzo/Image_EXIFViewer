@@ -46,6 +46,7 @@ class View_ui(QLabel):
         self.pushButton_rotL.setObjectName("pushButton_rotL")
         self.pushButton_rotL.clicked.connect(self.MainWindow.rotate_left)
         self.gridLayout.addWidget(self.pushButton_rotL, 1, 0, 1, 1)
+        self.pushButton_rotL.setShortcut('q')
 
         #Rot dx
         self.pushButton_rotR = QtWidgets.QPushButton(self.centralwidget)
@@ -57,6 +58,7 @@ class View_ui(QLabel):
         self.pushButton_rotR.setObjectName("pushButton_rotR")
         self.pushButton_rotR.clicked.connect(self.MainWindow.rotate_right)
         self.gridLayout.addWidget(self.pushButton_rotR, 1, 1, 1, 1)
+        self.pushButton_rotR.setShortcut('w')
 
         #-> dx
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
@@ -67,7 +69,7 @@ class View_ui(QLabel):
         self.pushButton_4.setIcon(icon2)
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton_4.clicked.connect(MainWindow.left)
-
+        self.pushButton_4.setShortcut('left')
         self.gridLayout.addWidget(self.pushButton_4, 1, 2, 1, 1)
 
         #<- sx
@@ -79,6 +81,7 @@ class View_ui(QLabel):
         self.pushButton_5.setIcon(icon3)
         self.pushButton_5.setObjectName("pushButton_5")
         self.pushButton_5.clicked.connect(MainWindow.right)
+        self.pushButton_5.setShortcut('right')
         self.gridLayout.addWidget(self.pushButton_5, 1, 3, 1, 1)
 
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)
