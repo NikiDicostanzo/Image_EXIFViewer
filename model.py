@@ -61,7 +61,11 @@ class Model:
                                 for k, v in img._getexif().items()
                                     if k in TAGS
                             }
-            print("Exif data: ",self.exif)
+            if  'GPSInfo' in self.exif.keys():
+               print("GPS", len(self.exif['GPSInfo']), '\n', self.exif['GPSInfo'])
+               # {1: 'N', 2: (43.0, 43.0, 37.3044), 3: 'E', 4: (11.0, 5.0, 45.8915)..}
+               # degrees, minutes, and seconds
+            #print("Exif data: ",self.exif)
 
     def get_info(self):
         return self.info
