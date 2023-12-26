@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QLabel, QGridLayout
-
+from PyQt5.QtCore import Qt
 class View_ui(QLabel):
 
     def __init__(self, MainWindow, controller):
@@ -21,7 +21,7 @@ class View_ui(QLabel):
     def setupUi(self):
         MainWindow = self.MainWindow
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(985, 603)
+        MainWindow.resize(985, 653)
         MainWindow.setStyleSheet("background-color: rgb(229, 241, 255);")
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -87,12 +87,15 @@ class View_ui(QLabel):
         self.tabWidgetInf.setObjectName("tabWidgetInf")
         self.gridLayout.addWidget(self.tabWidgetInf, 0, 5, 1, 3)
 
+
+
         #My image in window
         self.label_image = QLabel(self.centralwidget)
         self.label_image.setGeometry(QtCore.QRect(10, 30, 431, 501))
         self.label_image.setText("")
         self.label_image.setObjectName("label_image")
         self.gridLayout.addWidget(self.label_image, 0, 0, 1, 4)
+        self.label_image.setAlignment(Qt.AlignCenter)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)

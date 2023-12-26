@@ -2,7 +2,6 @@
 
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QWidget, QVBoxLayout, QTreeWidgetItem, QTreeWidget, QLabel
 from PyQt5.QtGui import  QPixmap, QTransform
-
 from PyQt5.QtCore import Qt, QSize
 
 from view_ui import View_ui
@@ -35,7 +34,7 @@ class View(QMainWindow):
         print('Angle', self.angle)
         if  self.angle==0:
             self.qpix_image = QPixmap(self.controller.get_image())
-            pixmap_resized = self.qpix_image.scaled(500, 500, Qt.KeepAspectRatio) #Resize image
+            pixmap_resized = self.qpix_image.scaled(512, 512, Qt.KeepAspectRatio) #Resize image
             self.ui.label_image.setPixmap(pixmap_resized)# show image
             #All data
             self.controller.set_info()
@@ -44,6 +43,7 @@ class View(QMainWindow):
         else:
             self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
                                             Qt.KeepAspectRatio, Qt.FastTransformation))
+                                            
             self.angle=0
        
     def left(self):
