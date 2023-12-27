@@ -63,10 +63,23 @@ class Model:
                             }
             if  'GPSInfo' in self.exif.keys():
                print("GPS", len(self.exif['GPSInfo']), '\n', self.exif['GPSInfo'])
+               lat = self.convert_coordinates(self.exif['GPSInfo'][1], self.exif['GPSInfo'][2])
+               lon = self.convert_coordinates(self.exif['GPSInfo'][3], self.exif['GPSInfo'][4])
+               print('Latitudine: ', lat, "Longitudine: ", lon)
                # {1: 'N', 2: (43.0, 43.0, 37.3044), 3: 'E', 4: (11.0, 5.0, 45.8915)..}
                # degrees, minutes, and seconds
             #print("Exif data: ",self.exif)
 
+    ##latitude and longitude to decimal degrees          
+    def convert_coordinates(self, cardinal, value):
+     
+        deg, min, sec = value # E e O sono positivi
+        if cardinal in ['S', 'W']:
+            deg = -deg
+            min = -min
+            sec = -sec
+        return deg + min / 60.0 + sec / 3600.0
+    
     def get_info(self):
         return self.info
     
