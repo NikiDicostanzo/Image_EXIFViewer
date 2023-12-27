@@ -13,6 +13,7 @@ class Model:
        #DATA
        self.info = {}
        self.exif = {}
+       self.gps = None
 
     #my current image
     def set_image(self, name):
@@ -48,7 +49,8 @@ class Model:
     def save_exif(self):
         self.exif={}
         img = Image.open(self.image)
-        #print('Qui',self.image.format)
+
+        self.gps = None
         if img._getexif() is None:
             print('Exif non presenti')
         else:
@@ -65,7 +67,9 @@ class Model:
                print("GPS", len(self.exif['GPSInfo']), '\n', self.exif['GPSInfo'])
                lat = self.convert_coordinates(self.exif['GPSInfo'][1], self.exif['GPSInfo'][2])
                lon = self.convert_coordinates(self.exif['GPSInfo'][3], self.exif['GPSInfo'][4])
-               print('Latitudine: ', lat, "Longitudine: ", lon)
+               self.gps = lat + "," + lon
+               
+               #print('Latitudine: ', lat, "Longitudine: ", lon)
                # {1: 'N', 2: (43.0, 43.0, 37.3044), 3: 'E', 4: (11.0, 5.0, 45.8915)..}
                # degrees, minutes, and seconds
             #print("Exif data: ",self.exif)
@@ -79,6 +83,9 @@ class Model:
             min = -min
             sec = -sec
         return deg + min / 60.0 + sec / 3600.0
+    
+    def get_gps(self):
+        return self.gps
     
     def get_info(self):
         return self.info

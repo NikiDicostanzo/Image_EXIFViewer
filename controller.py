@@ -39,3 +39,5 @@ class Controller:
     def get_exif(self):
         return self.model.get_exif()
     
+    def get_gps(self):
+        return self.model.get_gps()
