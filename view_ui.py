@@ -15,7 +15,7 @@ class View_ui(QLabel):
         
         QLabel.__init__(self, MainWindow)
         self.MainWindow = MainWindow
-        self.controller = controller ##
+        self.controller = controller 
         self.setupUi()
 
     def setupUi(self):
@@ -85,6 +85,7 @@ class View_ui(QLabel):
         self.pushButton_L.setShortcut('right')
         self.gridLayout.addWidget(self.pushButton_L, 1, 3, 1, 1)
 
+        #Tab with all Data
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidgetInf.setGeometry(QtCore.QRect(450, 30, 391, 811))
         self.tabWidgetInf.setStyleSheet("background-color: rgb(237, 255, 254);")
@@ -129,7 +130,7 @@ class View_ui(QLabel):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton_gps.setText(_translate("MainWindow", "GPS"))        
 
-        self.menuprova.setTitle(_translate("MainWindow", "prova"))
+        self.menuprova.setTitle(_translate("MainWindow", "Menu"))
         self.actionApri.setText(_translate("MainWindow", "Apri"))
 
 

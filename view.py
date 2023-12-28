@@ -83,11 +83,25 @@ class View(QMainWindow):
         self.updateInfo(info)
         self.tab_exif_ui(exif)
 
+    def set_color(self, tab):
+        tab.setStyleSheet(  "QTreeView{                      \n "       
+                            "background-color: #BBDEFB;}    \n"
+                            "QHeaderView::section {          \n"
+                            "    color: black;               \n"
+                            "    padding: 2px;               \n"
+                            "    height:20px;                \n"
+                            "    border: 0px solid #567dbc;  \n"
+                            "    border-left:0px;            \n"
+                            "    border-right:0px;           \n"
+                            "    background: magenta;        \n"
+                            "}")
+
     #Write general data    
     def updateInfo(self, info):
         self.ui.tabWidgetInf.clear() #delete old
         print('LEn',(info))
         tab =  QWidget() #self.ui.tab
+        self.set_color(tab)
         #tab.setObjectName("tab")
         
         if info is not None:
@@ -95,7 +109,7 @@ class View(QMainWindow):
             #print('LEn',len(info))
             if len(info):
                 infoTree = QTreeWidget()
-                self.writeTab(infoTree, info)
+                self.write_tab(infoTree, info)
                 infoTree.setHeaderLabel('Dettagli:')
             else:
                 infoTree = QLabel()
@@ -109,10 +123,11 @@ class View(QMainWindow):
     #Write exif data 
     def tab_exif_ui(self, exif):        
         tab_exif =  QWidget() #self.ui.tab
+        self.set_color(tab_exif)
         if exif is not None:
             if len(exif):
                 exifTree = QTreeWidget()
-                self.writeTab(exifTree, exif)
+                self.write_tab(exifTree, exif)
                 exifTree.setHeaderLabel('Dettagli:')
             else:
                 exifTree = QLabel()
@@ -122,12 +137,13 @@ class View(QMainWindow):
             exifTree = QLabel()
             exifTree.setAlignment(Qt.AlignCenter)
             exifTree.setText('Dati EXIF non disponibili')
+        
         layout = QVBoxLayout()
         layout.addWidget(exifTree)
         tab_exif.setLayout(layout)
         self.ui.tabWidgetInf.addTab(tab_exif, "Exif")
 
-    def writeTab(self, widget, data):
+    def write_tab(self, widget, data):
         self.widget = widget
         self.widget.clear()
         self.writeData(self.widget.invisibleRootItem(), data)
