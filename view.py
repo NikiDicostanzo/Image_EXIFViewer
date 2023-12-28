@@ -32,20 +32,26 @@ class View(QMainWindow):
          
             
     def show_image(self):
-        print('Angle', self.angle)
-        if  self.angle==0:
-            self.qpix_image = QPixmap(self.controller.get_image())
-            pixmap_resized = self.qpix_image.scaled(512, 512, Qt.KeepAspectRatio) #Resize image
-            self.ui.label_image.setPixmap(pixmap_resized)# show image
-            #All data
-            self.controller.set_info()
-            self.controller.set_exif()
-            self.tab_data()
-        else:
-            self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
-                                            Qt.KeepAspectRatio, Qt.FastTransformation))
-                                            
-            self.angle=0
+        if self.controller.get_image() != None:
+         
+            print('Angle', self.angle)
+            if  self.angle==0:
+                self.qpix_image = QPixmap(self.controller.get_image())
+             
+                
+                pixmap_resized = self.qpix_image.scaled(QSize(min(self.ui.label_image.size().width(), 512), min(self.ui.label_image.size().height(), 512)),
+                                                Qt.KeepAspectRatio, Qt.FastTransformation) #Resize image
+               
+                self.ui.label_image.setPixmap(pixmap_resized)# show image
+                #All data
+                self.controller.set_info()
+                self.controller.set_exif()
+                self.tab_data()
+            else:
+                self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
+                                                Qt.KeepAspectRatio, Qt.FastTransformation))
+                                                
+                self.angle=0
        
     def left(self):
         print("sx", self.index)
@@ -85,7 +91,7 @@ class View(QMainWindow):
 
     def set_color(self, tab):
         tab.setStyleSheet(  "QTreeView{                      \n "       
-                            "background-color: #BBDEFB;}    \n"
+                            "background-color:  rgb(250, 255, 255);}    \n"
                             "QHeaderView::section {          \n"
                             "    color: black;               \n"
                             "    padding: 2px;               \n"
@@ -93,7 +99,7 @@ class View(QMainWindow):
                             "    border: 0px solid #567dbc;  \n"
                             "    border-left:0px;            \n"
                             "    border-right:0px;           \n"
-                            "    background: magenta;        \n"
+                            "    background: rgb(200, 220, 240);        \n"
                             "}")
 
     #Write general data    
@@ -185,3 +191,7 @@ class View(QMainWindow):
                 webbrowser.open_new(url)
             else:
                 QMessageBox.about(self, "Errore", "Informazioni GPS non presenti")
+    
+    def resizeEvent(self, ev):
+        self.show_image()
+        super().resizeEvent(ev)

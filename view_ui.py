@@ -7,8 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QLabel, QGridLayout
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QLabel, QGridLayout, QSizePolicy
+from PyQt5.QtCore import Qt, QSize
 class View_ui(QLabel):
 
     def __init__(self, MainWindow, controller):
@@ -36,6 +36,8 @@ class View_ui(QLabel):
         self.pushButton_gps.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton_gps, 1, 7, 1, 1)
         self.pushButton_gps.clicked.connect(self.MainWindow.set_gps)
+        self.pushButton_gps.setStyleSheet('background-color: rgb(255, 255, 255);')
+
 
         #Rot sx
         self.pushButton_rotL = QtWidgets.QPushButton(self.centralwidget)
@@ -48,6 +50,8 @@ class View_ui(QLabel):
         self.pushButton_rotL.clicked.connect(self.MainWindow.rotate_left)
         self.gridLayout.addWidget(self.pushButton_rotL, 1, 0, 1, 1)
         self.pushButton_rotL.setShortcut('q')
+        self.pushButton_rotL.setStyleSheet('background-color: rgb(255, 255, 255);')
+
 
         #Rot dx
         self.pushButton_rotR = QtWidgets.QPushButton(self.centralwidget)
@@ -60,6 +64,8 @@ class View_ui(QLabel):
         self.pushButton_rotR.clicked.connect(self.MainWindow.rotate_right)
         self.gridLayout.addWidget(self.pushButton_rotR, 1, 1, 1, 1)
         self.pushButton_rotR.setShortcut('w')
+        self.pushButton_rotR.setStyleSheet('background-color: rgb(255, 255, 255);')
+
 
         #-> dx
         self.pushButton_R = QtWidgets.QPushButton(self.centralwidget)
@@ -71,6 +77,7 @@ class View_ui(QLabel):
         self.pushButton_R.setObjectName("pushButton_4")
         self.pushButton_R.clicked.connect(MainWindow.left)
         self.pushButton_R.setShortcut('left')
+        self.pushButton_R.setStyleSheet('background-color: rgb(255, 255, 255);')
         self.gridLayout.addWidget(self.pushButton_R, 1, 2, 1, 1)
 
         #<- sx
@@ -83,6 +90,7 @@ class View_ui(QLabel):
         self.pushButton_L.setObjectName("pushButton_5")
         self.pushButton_L.clicked.connect(MainWindow.right)
         self.pushButton_L.setShortcut('right')
+        self.pushButton_L.setStyleSheet('background-color: rgb(255, 255, 255);')
         self.gridLayout.addWidget(self.pushButton_L, 1, 3, 1, 1)
 
         #Tab with all Data
@@ -92,6 +100,7 @@ class View_ui(QLabel):
         self.tabWidgetInf.setObjectName("tabWidgetInf")
         self.gridLayout.addWidget(self.tabWidgetInf, 0, 5, 1, 3)
 
+        
         #My image in window
         self.label_image = QLabel(self.centralwidget)
         self.label_image.setGeometry(QtCore.QRect(10, 30, 431, 501))
@@ -99,23 +108,32 @@ class View_ui(QLabel):
         self.label_image.setObjectName("label_image")
         self.gridLayout.addWidget(self.label_image, 0, 0, 1, 4)
         self.label_image.setAlignment(Qt.AlignCenter)
+         # Rescaling
+        self.label_image.setScaledContents(False)
+        self.label_image.setMinimumSize(300, 300)
+        self.label_image.setSizePolicy(
+        QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+    
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 985, 22))
         self.menubar.setObjectName("menubar")
-        self.menuprova = QtWidgets.QMenu(self.menubar)
-        self.menuprova.setObjectName("menuprova")
+        self.menu = QtWidgets.QMenu(self.menubar)
+        self.menu.setObjectName("menu")
+        #self.menubar.setStyleSheet('background-color: #95B5D9')
+        self.menu.setStyleSheet('background-color: rgb(255, 255, 255);')
+
         self.MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.actionApri = QtWidgets.QAction(MainWindow)
         self.actionApri.setObjectName("actionApri")
-
-        self.menuprova.addSeparator()
-        self.menuprova.addAction(self.actionApri)
-        self.menubar.addAction(self.menuprova.menuAction())
+        
+        self.menu.addSeparator()
+        self.menu.addAction(self.actionApri)
+        self.menubar.addAction(self.menu.menuAction())
        
         self.retranslateUi(MainWindow)
         self.tabWidgetInf.setCurrentIndex(0)
@@ -130,7 +148,7 @@ class View_ui(QLabel):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton_gps.setText(_translate("MainWindow", "GPS"))        
 
-        self.menuprova.setTitle(_translate("MainWindow", "Menu"))
+        self.menu.setTitle(_translate("MainWindow", "Menu"))
         self.actionApri.setText(_translate("MainWindow", "Apri"))
 
 
