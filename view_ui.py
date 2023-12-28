@@ -62,36 +62,34 @@ class View_ui(QLabel):
         self.pushButton_rotR.setShortcut('w')
 
         #-> dx
-        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_4.setGeometry(QtCore.QRect(250, 560, 111, 41))
-        self.pushButton_4.setText("")
+        self.pushButton_R = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_R.setGeometry(QtCore.QRect(250, 560, 111, 41))
+        self.pushButton_R.setText("")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("icons/right-arrow2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_4.setIcon(icon2)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.pushButton_4.clicked.connect(MainWindow.left)
-        self.pushButton_4.setShortcut('left')
-        self.gridLayout.addWidget(self.pushButton_4, 1, 2, 1, 1)
+        self.pushButton_R.setIcon(icon2)
+        self.pushButton_R.setObjectName("pushButton_4")
+        self.pushButton_R.clicked.connect(MainWindow.left)
+        self.pushButton_R.setShortcut('left')
+        self.gridLayout.addWidget(self.pushButton_R, 1, 2, 1, 1)
 
         #<- sx
-        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_5.setGeometry(QtCore.QRect(370, 560, 111, 41))
-        self.pushButton_5.setText("")
+        self.pushButton_L = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_L.setGeometry(QtCore.QRect(370, 560, 111, 41))
+        self.pushButton_L.setText("")
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap("icons/right-arrow.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_5.setIcon(icon3)
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.pushButton_5.clicked.connect(MainWindow.right)
-        self.pushButton_5.setShortcut('right')
-        self.gridLayout.addWidget(self.pushButton_5, 1, 3, 1, 1)
+        self.pushButton_L.setIcon(icon3)
+        self.pushButton_L.setObjectName("pushButton_5")
+        self.pushButton_L.clicked.connect(MainWindow.right)
+        self.pushButton_L.setShortcut('right')
+        self.gridLayout.addWidget(self.pushButton_L, 1, 3, 1, 1)
 
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidgetInf.setGeometry(QtCore.QRect(450, 30, 391, 811))
         self.tabWidgetInf.setStyleSheet("background-color: rgb(237, 255, 254);")
         self.tabWidgetInf.setObjectName("tabWidgetInf")
         self.gridLayout.addWidget(self.tabWidgetInf, 0, 5, 1, 3)
-
-
 
         #My image in window
         self.label_image = QLabel(self.centralwidget)
@@ -123,8 +121,8 @@ class View_ui(QLabel):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButton_gps, self.pushButton_rotL)
         MainWindow.setTabOrder(self.pushButton_rotL, self.pushButton_rotR)
-        MainWindow.setTabOrder(self.pushButton_rotR, self.pushButton_4)
-        MainWindow.setTabOrder(self.pushButton_4, self.pushButton_5)
+        MainWindow.setTabOrder(self.pushButton_rotR, self.pushButton_R)
+        MainWindow.setTabOrder(self.pushButton_R, self.pushButton_L)
         
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
