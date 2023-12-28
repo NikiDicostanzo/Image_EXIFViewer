@@ -67,7 +67,7 @@ class Model:
                print("GPS", len(self.exif['GPSInfo']), '\n', self.exif['GPSInfo'])
                lat = self.convert_coordinates(self.exif['GPSInfo'][1], self.exif['GPSInfo'][2])
                lon = self.convert_coordinates(self.exif['GPSInfo'][3], self.exif['GPSInfo'][4])
-               self.gps = lat + "," + lon
+               self.gps = str(lat) + "," + str(lon)
                
                #print('Latitudine: ', lat, "Longitudine: ", lon)
                # {1: 'N', 2: (43.0, 43.0, 37.3044), 3: 'E', 4: (11.0, 5.0, 45.8915)..}

@@ -1,6 +1,7 @@
 """ Main function """
 
-from PyQt5.QtWidgets import QMainWindow, QFileDialog, QWidget, QVBoxLayout, QTreeWidgetItem, QTreeWidget, QLabel
+import webbrowser
+from PyQt5.QtWidgets import QMainWindow, QFileDialog, QWidget, QVBoxLayout, QTreeWidgetItem, QTreeWidget, QLabel, QMessageBox
 from PyQt5.QtGui import  QPixmap, QTransform
 from PyQt5.QtCore import Qt, QSize
 
@@ -157,3 +158,14 @@ class View(QMainWindow):
             child = QTreeWidgetItem()
             child.setText(0, str(data))
             item.addChild(child)
+    
+    # 
+    def set_gps(self):
+        if self.controller.get_image() is not None:
+            gps = self.controller.get_gps()
+            if gps is not None:
+                url = "https://www.google.it/maps?q=" + gps
+                print("URL",url) 
+                webbrowser.open_new(url)
+            else:
+                QMessageBox.about(self, "Errore", "Informazioni GPS non presenti")

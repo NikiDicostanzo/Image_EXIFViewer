@@ -35,6 +35,7 @@ class View_ui(QLabel):
         self.pushButton_gps.setGeometry(QtCore.QRect(710, 560, 111, 41))
         self.pushButton_gps.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton_gps, 1, 7, 1, 1)
+        self.pushButton_gps.clicked.connect(self.MainWindow.set_gps)
 
         #Rot sx
         self.pushButton_rotL = QtWidgets.QPushButton(self.centralwidget)
