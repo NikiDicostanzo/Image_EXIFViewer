@@ -109,7 +109,6 @@ class View(QMainWindow):
         tab =  QWidget() #self.ui.tab
         
         self.set_color(tab)
-        tab.QHBoxLayout.setStyleSheet('background:red')
         #tab.setObjectName("tab")
         
         if info is not None:

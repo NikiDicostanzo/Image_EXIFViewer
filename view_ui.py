@@ -44,7 +44,7 @@ class View_ui(QLabel):
         self.pushButton_rotL.setGeometry(QtCore.QRect(10, 560, 111, 41))
         self.pushButton_rotL.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/arrow-left.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icons/arrow-leftR.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_rotL.setIcon(icon)
         self.pushButton_rotL.setObjectName("pushButton_rotL")
         self.pushButton_rotL.clicked.connect(self.MainWindow.rotate_left)
@@ -58,7 +58,7 @@ class View_ui(QLabel):
         self.pushButton_rotR.setGeometry(QtCore.QRect(130, 560, 111, 41))
         self.pushButton_rotR.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icons/arrow-left2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("icons/arrow-rightR.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_rotR.setIcon(icon1)
         self.pushButton_rotR.setObjectName("pushButton_rotR")
         self.pushButton_rotR.clicked.connect(self.MainWindow.rotate_right)
@@ -67,7 +67,7 @@ class View_ui(QLabel):
         self.pushButton_rotR.setStyleSheet('background-color: rgb(255, 255, 255);')
 
 
-        #-> dx
+        #<- sx
         self.pushButton_L = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_L.setGeometry(QtCore.QRect(250, 560, 111, 41))
         self.pushButton_L.setText("")
