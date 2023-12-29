@@ -100,14 +100,16 @@ class View(QMainWindow):
                             "    border-left:0px;            \n"
                             "    border-right:0px;           \n"
                             "    background: rgb(200, 220, 240);        \n"
-                            "}")
+                            "}                              \n")
 
     #Write general data    
     def updateInfo(self, info):
         self.ui.tabWidgetInf.clear() #delete old
         print('LEn',(info))
         tab =  QWidget() #self.ui.tab
+        
         self.set_color(tab)
+        tab.QHBoxLayout.setStyleSheet('background:red')
         #tab.setObjectName("tab")
         
         if info is not None:
@@ -116,7 +118,6 @@ class View(QMainWindow):
             if len(info):
                 infoTree = QTreeWidget()
                 self.write_tab(infoTree, info)
-                infoTree.setHeaderLabel('Dettagli:')
             else:
                 infoTree = QLabel()
                 infoTree.setAlignment(Qt.AlignCenter)
@@ -124,7 +125,9 @@ class View(QMainWindow):
             
             layout.addWidget(infoTree)
             tab.setLayout(layout)
+            
         self.ui.tabWidgetInf.addTab(tab, "Generali")
+        #self.ui.tabWidgetInf.setStyleSheet('background:red;')
 
     #Write exif data 
     def tab_exif_ui(self, exif):        

@@ -36,7 +36,7 @@ class View_ui(QLabel):
         self.pushButton_gps.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton_gps, 1, 7, 1, 1)
         self.pushButton_gps.clicked.connect(self.MainWindow.set_gps)
-        self.pushButton_gps.setStyleSheet('background-color: rgb(255, 255, 255);')
+        self.pushButton_gps.setStyleSheet('QPushButton{background-color: rgb(255, 255, 255); font:bold;}')
 
 
         #Rot sx
@@ -68,30 +68,30 @@ class View_ui(QLabel):
 
 
         #-> dx
-        self.pushButton_R = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_R.setGeometry(QtCore.QRect(250, 560, 111, 41))
-        self.pushButton_R.setText("")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("icons/right-arrow2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_R.setIcon(icon2)
-        self.pushButton_R.setObjectName("pushButton_4")
-        self.pushButton_R.clicked.connect(MainWindow.left)
-        self.pushButton_R.setShortcut('left')
-        self.pushButton_R.setStyleSheet('background-color: rgb(255, 255, 255);')
-        self.gridLayout.addWidget(self.pushButton_R, 1, 2, 1, 1)
-
-        #<- sx
         self.pushButton_L = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_L.setGeometry(QtCore.QRect(370, 560, 111, 41))
+        self.pushButton_L.setGeometry(QtCore.QRect(250, 560, 111, 41))
         self.pushButton_L.setText("")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("icons/left-arrow.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_L.setIcon(icon2)
+        self.pushButton_L.setObjectName("pushButton_L")
+        self.pushButton_L.clicked.connect(MainWindow.left)
+        self.pushButton_L.setShortcut('left')
+        self.pushButton_L.setStyleSheet('background-color: rgb(255, 255, 255);')
+        self.gridLayout.addWidget(self.pushButton_L, 1, 2, 1, 1)
+
+        #-> dx
+        self.pushButton_R = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_R.setGeometry(QtCore.QRect(370, 560, 111, 41))
+        self.pushButton_R.setText("")
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap("icons/right-arrow.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_L.setIcon(icon3)
-        self.pushButton_L.setObjectName("pushButton_5")
-        self.pushButton_L.clicked.connect(MainWindow.right)
-        self.pushButton_L.setShortcut('right')
-        self.pushButton_L.setStyleSheet('background-color: rgb(255, 255, 255);')
-        self.gridLayout.addWidget(self.pushButton_L, 1, 3, 1, 1)
+        self.pushButton_R.setIcon(icon3)
+        self.pushButton_R.setObjectName("pushButton_R")
+        self.pushButton_R.clicked.connect(MainWindow.right)
+        self.pushButton_R.setShortcut('right')
+        self.pushButton_R.setStyleSheet('background-color: rgb(255, 255, 255);')
+        self.gridLayout.addWidget(self.pushButton_R, 1, 3, 1, 1)
 
         #Tab with all Data
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)
@@ -119,10 +119,11 @@ class View_ui(QLabel):
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 985, 22))
         self.menubar.setObjectName("menubar")
+        self.menubar.setStyleSheet('QMenuBar{ font: bold;}')
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
         #self.menubar.setStyleSheet('background-color: #95B5D9')
-        self.menu.setStyleSheet('background-color: rgb(255, 255, 255);')
+        self.menu.setStyleSheet('QMenu{ background-color: rgb(255, 255, 255); font: bold;}')
 
         self.MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -140,8 +141,8 @@ class View_ui(QLabel):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.pushButton_gps, self.pushButton_rotL)
         MainWindow.setTabOrder(self.pushButton_rotL, self.pushButton_rotR)
-        MainWindow.setTabOrder(self.pushButton_rotR, self.pushButton_R)
-        MainWindow.setTabOrder(self.pushButton_R, self.pushButton_L)
+        MainWindow.setTabOrder(self.pushButton_rotR, self.pushButton_L)
+        MainWindow.setTabOrder(self.pushButton_L, self.pushButton_R)
         
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
