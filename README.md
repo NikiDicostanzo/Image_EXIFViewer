@@ -5,7 +5,7 @@ Questo progetto ha lo scopo di implementare una semplice applicazione di visuali
 Per installare le dipendenze necessarie per eseguire il progetto digitare i seguenti comandi:
 ```
     conda create -n viewer python=3.9
-    conda activate pyqt5
+    conda activate viewer
     pip install pyqt5-tools
     conda install -c anaconda pillow
 ```
