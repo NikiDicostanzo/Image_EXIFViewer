@@ -64,7 +64,7 @@ class Model:
                                     if k in TAGS
                             }
             if  'GPSInfo' in self.exif.keys():
-               print("GPS", len(self.exif['GPSInfo']), '\n', self.exif['GPSInfo'])
+              # print("GPS", len(self.exif['GPSInfo']), '\n', self.exif['GPSInfo'])
                lat = self.convert_coordinates(self.exif['GPSInfo'][1], self.exif['GPSInfo'][2])
                lon = self.convert_coordinates(self.exif['GPSInfo'][3], self.exif['GPSInfo'][4])
                self.gps = str(lat) + "," + str(lon)

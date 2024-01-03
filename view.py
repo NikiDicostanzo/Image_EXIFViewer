@@ -116,36 +116,37 @@ class View(QMainWindow):
             #print('LEn',len(info))
             if len(info):
                 infoTree = QTreeWidget()
+                infoTree.setStyleSheet('background: rgb(237, 255, 254)')
                 self.write_tab(infoTree, info)
+                infoTree.setHeaderLabel('Dettagli:')
             else:
                 infoTree = QLabel()
                 infoTree.setAlignment(Qt.AlignCenter)
+                #infoTree.setStyleSheet('background: rgb(237, 255, 254)')
                 infoTree.setText('Informazioni generali non disponibili')
             
             layout.addWidget(infoTree)
             tab.setLayout(layout)
             
         self.ui.tabWidgetInf.addTab(tab, "Generali")
-        #self.ui.tabWidgetInf.setStyleSheet('background:red;')
 
     #Write exif data 
     def tab_exif_ui(self, exif):        
         tab_exif =  QWidget() #self.ui.tab
         self.set_color(tab_exif)
-        if exif is not None:
-            if len(exif):
+        if exif is not None and len(exif):
                 exifTree = QTreeWidget()
-                self.write_tab(exifTree, exif)
+                exifTree.setStyleSheet('background: rgb(237, 255, 254)')
+                data_exif = exif
+                del data_exif['GPSInfo']
+                self.write_tab(exifTree, data_exif)
                 exifTree.setHeaderLabel('Dettagli:')
-            else:
-                exifTree = QLabel()
-                exifTree.setAlignment(Qt.AlignCenter)
-                exifTree.setText('Dati EXIF non disponibili')
         else:
             exifTree = QLabel()
             exifTree.setAlignment(Qt.AlignCenter)
+            exifTree.setStyleSheet('background: rgb(237, 255, 254)')
             exifTree.setText('Dati EXIF non disponibili')
-        
+
         layout = QVBoxLayout()
         layout.addWidget(exifTree)
         tab_exif.setLayout(layout)
@@ -159,6 +160,7 @@ class View(QMainWindow):
     ## QTreeWidgetItem
     def writeData(self, item, data):
         item.setExpanded(True)
+        
         if type(data) is dict:
             for key, val in data.items():
                 child = QTreeWidgetItem()

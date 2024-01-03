@@ -96,7 +96,7 @@ class View_ui(QLabel):
         #Tab with all Data
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidgetInf.setGeometry(QtCore.QRect(450, 30, 391, 811))
-        self.tabWidgetInf.setStyleSheet("background-color: rgb(237, 255, 254);")
+        self.tabWidgetInf.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.tabWidgetInf.setObjectName("tabWidgetInf")
         self.gridLayout.addWidget(self.tabWidgetInf, 0, 5, 1, 3)
 
