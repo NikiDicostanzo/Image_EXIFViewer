@@ -21,21 +21,34 @@ Per installare le dipendenze necessarie per eseguire il progetto digitare i segu
 * **Geolocalizzazione**: se un'immagine ha tag di geolocalizzazione GPS nel suo set di tag EXIF, il visualizzatore implementa una funzione che consente agli utenti di fare clic sul pulsante e aprire un browser con Google Maps centrato sulla posizione GPS dell'immagine.
 
 * **Visualizzazione di più immagini**: l'interfaccia permette all'utente di aggiungere più di un'immagine e implementa controlli per passare all'immagine precedente/successiva  nell'elenco.
-
+* **Hotkeys**: sono stati inserite delle *keyboard shortcuts*:
+  *  *Left* per uno shift verso sinistra
+  *  *Right* per uno shift verso destra
+  *  *Q* per una rotazione verso sinistra
+  *  *W* per una rotazione verso destra
+  
 ## Utilizzo
 Per eseguire il progetto, usa il seguente comando:
 ```
-python main.py
+    python main.py
 ```
+## File
+* main.py:
+* model.py:
+* view.py:
+* view_ui.py:
+* controller.py:
+  
 ## Struttura del progetto
 
 * **Model**: contiene tutte le informazioni necessarie per elaborare l'immagine e i suoi dati EXIF (se disponibili), include l'immagine corrente e la lista di tutte le immagini presenti. 
 
 * **View**: definisce l'aspetto della finestra principale e collega i suoi pulsanti alle funzioni del controller. La view è stata creata utilizzando *Qt Designer*. Il comando usato per generare il codice Python da un file `.ui` è il seguente:
 ```
-pyuic5 -x prova1.ui -o prova1.py
+    pyuic5 -x prova1.ui -o prova1.py
 ```
 * **Controller**: carica e salva l'immagine (gestisce l'I/O). Il controller gestisce l'input/output dell'immagine. Carica e salva l'immagine, e agisce come osservatore del soggetto della view.
 
 
+## Screen
 
