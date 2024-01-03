@@ -100,7 +100,7 @@ class View(QMainWindow):
                             "    border-left:0px;            \n"
                             "    border-right:0px;           \n"
                             "    background: rgb(200, 220, 240);        \n"
-                            "}                              \n")
+                            "    font: bold}                              \n")
 
     #Write general data    
     def updateInfo(self, info):
@@ -122,7 +122,7 @@ class View(QMainWindow):
             else:
                 infoTree = QLabel()
                 infoTree.setAlignment(Qt.AlignCenter)
-                #infoTree.setStyleSheet('background: rgb(237, 255, 254)')
+                infoTree.setStyleSheet('background: rgb(237, 255, 254)')
                 infoTree.setText('Informazioni generali non disponibili')
             
             layout.addWidget(infoTree)
