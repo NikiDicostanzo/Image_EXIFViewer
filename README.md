@@ -1,4 +1,4 @@
-# Image*EXIFViewer*
+# Image and EXIF Metadata Viewer
 Questo progetto ha lo scopo di implementare una semplice applicazione di visualizzazione delle immagini e dei dati EXIF associati. Utilizza *Python* come linguaggio di programmazione insieme alla libreria *PyQt5*. 
 <br>Il progetto adotta il pattern *Model-View-Controller*(MVC) per separare le responsabilità relative ai dati (Model), all'interfaccia utente (View) e alla logica di controllo (Controller).
 
