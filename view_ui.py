@@ -96,6 +96,7 @@ class View_ui(QLabel):
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidgetInf.setGeometry(QtCore.QRect(450, 30, 391, 811))
         self.tabWidgetInf.setObjectName("tabWidgetInf")
+        self.tabWidgetInf.setMinimumSize(301, 101)
         self.gridLayout.addWidget(self.tabWidgetInf, 0, 5, 1, 3)
         self.tabWidgetInf.setStyleSheet(  
                             "QWidget{background-color:rgb(255, 255, 255);}"
@@ -112,12 +113,15 @@ class View_ui(QLabel):
                             "    image: url(icons/tree_item_open.png);\n"
                             "    padding:5px;}\n"
                             "QTreeWidget::item {\n"
-                            "   border-bottom: 1px solid rgb(216, 216, 216);}\n"
+                            "   color:black; border-bottom: 1px solid rgb(216, 216, 216);}\n"
+                            "QTreeWidget{ background: rgb(237, 255, 254)}\n"
                             "QHeaderView::section {          \n"
                             "    padding: 2px;               \n"
                             "    border: 0px solid;  \n"
                             "    background: rgb(200, 220, 240);        \n"
-                            "    font: bold}                             \n")
+                            "    font: bold}                             \n"
+                            "QLabel{background: rgb(237, 255, 254); border: 1px solid; font: italic 20px;}\n"
+                            "QScrollBar:vertical { background: #84bde0; border-radius: 0px;}\n")
         
         #My image in window
         self.label_image = QLabel(self.centralwidget)
@@ -143,7 +147,8 @@ class View_ui(QLabel):
                                    ' QMenuBar::item::selected { background: rgb(200, 220, 240)}')
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
-        self.menu.setStyleSheet('QMenu{ background-color: rgb(255, 255, 255); font: bold; width: 100px; border-left:1px solid}')
+        self.menu.setStyleSheet('QMenu{ background-color: rgb(255, 255, 255);width:140px; height:36; font: bold; border-left:1px solid} \n'
+                                'QMenu::item::selected {color:rgb(200, 220, 240);}')
         # Open image
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -167,8 +172,8 @@ class View_ui(QLabel):
         
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("Viewer", "Viewer"))
-        self.pushButton_gps.setText(_translate("Viewer", "GPS"))        
+        MainWindow.setWindowTitle(_translate("Image_EXIFViewer", "Image_EXIFViewer"))
+        self.pushButton_gps.setText(_translate("Image_EXIFViewer", "GPS"))        
 
-        self.menu.setTitle(_translate("Viewer", "Menu"))
-        self.actionApri.setText(_translate("Viewer", "Apri"))
+        self.menu.setTitle(_translate("Image_EXIFViewer", "Menu"))
+        self.actionApri.setText(_translate("Image_EXIFViewer", "Open image"))

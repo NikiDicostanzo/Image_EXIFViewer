@@ -85,13 +85,11 @@ class View(QMainWindow):
             layout = QVBoxLayout()
             if len(info): # write info
                 infoTree = QTreeWidget()
-                infoTree.setStyleSheet('background: rgb(237, 255, 254)')
                 self.write_tab(infoTree, info)
                 infoTree.setHeaderLabel('Dettagli:')
             else: # info not available
                 infoTree = QLabel()
                 infoTree.setAlignment(Qt.AlignCenter)
-                infoTree.setStyleSheet('QLabel{background: rgb(237, 255, 254); border: 1px solid; ; font:italic 20px ;}')
                 infoTree.setText('Informazioni generali non disponibili')
             layout.addWidget(infoTree)
             tab.setLayout(layout)    
@@ -102,15 +100,14 @@ class View(QMainWindow):
         tab_exif =  QWidget() 
         if exif is not None and len(exif): # Write exif
             exifTree = QTreeWidget()
-            exifTree.setStyleSheet('background: rgb(237, 255, 254)')
             data_exif = exif
-            del data_exif['GPSInfo'] # don't show gps in tab
+            if  'GPSInfo' in exif.keys():
+                del data_exif['GPSInfo'] # don't show gps in tab
             self.write_tab(exifTree, data_exif) 
             exifTree.setHeaderLabel('Dettagli:')
         else: # Exif not available
             exifTree = QLabel()
             exifTree.setAlignment(Qt.AlignCenter)
-            exifTree.setStyleSheet('QLabel{background: rgb(237, 255, 254); border: 1px solid; font: italic 20px;}')
             exifTree.setText('Dati EXIF non disponibili')
 
         layout = QVBoxLayout()
