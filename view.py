@@ -18,151 +18,114 @@ class View(QMainWindow):
         self.index = 0
         self.angle = 0
 
-        self.ui.actionApri.triggered.connect(self.add_image)
-
+    # Open and add new image
     def add_image(self):
         image = QFileDialog.getOpenFileName(self, caption='Open an image',
                                             filter='Image files (*.jpg *.jpeg *.png *.JPG *.PNG)')
         if image[0] != '': # Se aggiungo immagine
             self.controller.add_image(image)
-            self.index = self.controller.get_length() # last image
+            self.index = self.controller.get_length()-1 # last image
             self.show_image()
          
-            
     def show_image(self):
-        if self.controller.get_image() != None:
-            if  self.angle==0:
+        if self.controller.get_image() != None: 
+            if  self.angle==0: # if not rotate image 
                 self.qpix_image = QPixmap(self.controller.get_image())
                 pixmap_resized = self.qpix_image.scaled(QSize(min(self.ui.label_image.size().width(), 512), min(self.ui.label_image.size().height(), 512)),
-                                                Qt.KeepAspectRatio, Qt.FastTransformation) #Resize image
-               
-                self.ui.label_image.setPixmap(pixmap_resized)# show image
+                                                Qt.KeepAspectRatio, Qt.FastTransformation) #Resize image (max 512x512)
+                self.ui.label_image.setPixmap(pixmap_resized)# Show image in label 
                 #Set all data
-                self.controller.set_info()
+                self.controller.set_info() 
                 self.controller.set_exif()
-                self.tab_data()
+                self.tab_data() # Show tab data
             else:
                 self.ui.label_image.setPixmap(self.qpix_image.scaled(QSize(min(self.size().width(), 512), min(self.size().height(), 512)),
                                                 Qt.KeepAspectRatio, Qt.FastTransformation))                     
-                self.angle=0
+                self.angle=0 # reset angle
 
-    ### Action   ###   
-    def left(self):
-        if self.index > 1:
+    ### Action ###   
+    def left(self): # previous image
+        if self.index >= 1:
                 self.index -= 1
-                self.controller.get_image_index(self.index-1) #parto da 0
+                self.controller.get_image_index(self.index) 
                 self.show_image()
                 
-    def right(self):
-        print("dx", self.index)
-        if self.index < self.controller.get_length() :
+    def right(self): # next image
+        if self.index < self.controller.get_length()-1:
                 self.index += 1
-                self.controller.get_image_index(self.index-1) #parto da 0
+                self.controller.get_image_index(self.index) 
                 self.show_image()
 
-    def rotate_left(self):
+    def rotate_left(self): # left rotate image
         if self.controller.get_image() is not None:
             self.angle -= 90
             transform = QTransform().rotate(self.angle)
             self.qpix_image = self.qpix_image.transformed(transform, Qt.SmoothTransformation)
             self.show_image()
     
-    def rotate_right(self):
+    def rotate_right(self): # right rotate image
         if self.controller.get_image() is not None:
             self.angle += 90
             transform = QTransform().rotate(self.angle)
             self.qpix_image = self.qpix_image.transformed(transform, Qt.SmoothTransformation)
             self.show_image()
     
-    ##TAB
-    def tab_data(self):
-        print("QTabWidget")
+    ### TAB ###
+    def tab_data(self): 
         info = self.controller.get_info()
         exif = self.controller.get_exif()
         self.updateInfo(info)
         self.tab_exif_ui(exif)
 
-    def set_style(self, tab):
-        tab.setStyleSheet(  "QTreeView{                      \n "       
-                            "background-color:  rgb(250, 255, 255);   \n"
-                            "border: 1px solid;}\n"
-                            "QTreeView::branch{ \n"
-                            "border-bottom: 1px solid rgb(210, 210, 210);}\n"
-                            "QTreeView::branch:closed:has-children {\n"
-                            "    border-image: none;\n"
-                            "    image: url(icons/tree_item_close.png);\n"
-                            "    padding:5px;}                          \n"
-                            "QTreeView::branch:open:has-children {\n"
-                            "    border-image: none;\n"
-                            "    image: url(icons/tree_item_open.png);\n"
-                            "    padding:5px;}\n"
-                            "QTreeWidget::item {\n"
-                             "border-bottom: 1px solid rgb(216, 216, 216);}\n"
-                            "QHeaderView::section {          \n"
-                            "    padding: 2px;               \n"
-                            "    border: 0px solid;  \n"
-                            "    background: rgb(200, 220, 240);        \n"
-                            "    font: bold}                             \n")
-                           # "QWidget{border:1px solid;  }\n")
-
-    ###Write general information ###    
+    ### Write general information ###    
     def updateInfo(self, info):
         self.ui.tabWidgetInf.clear() #delete old
-        print('LEn',(info))
-        tab =  QWidget() #self.ui.tab
-        self.set_style(tab)
-        #tab.setObjectName("tab")
-        
+        tab =  QWidget() 
         if info is not None:
             layout = QVBoxLayout()
-            #print('LEn',len(info))
-            if len(info):
+            if len(info): # write info
                 infoTree = QTreeWidget()
                 infoTree.setStyleSheet('background: rgb(237, 255, 254)')
                 self.write_tab(infoTree, info)
                 infoTree.setHeaderLabel('Dettagli:')
-            else:
+            else: # info not available
                 infoTree = QLabel()
                 infoTree.setAlignment(Qt.AlignCenter)
-                infoTree.setStyleSheet('background: rgb(237, 255, 254)')
+                infoTree.setStyleSheet('QLabel{background: rgb(237, 255, 254); border: 1px solid; ; font:italic 20px ;}')
                 infoTree.setText('Informazioni generali non disponibili')
-            
             layout.addWidget(infoTree)
-            tab.setLayout(layout)
-            
+            tab.setLayout(layout)    
         self.ui.tabWidgetInf.addTab(tab, "Generali")
 
     ### Write exif data ###
     def tab_exif_ui(self, exif):        
-        tab_exif =  QWidget() #self.ui.tab
-        self.set_style(tab_exif)
-        if exif is not None and len(exif):
+        tab_exif =  QWidget() 
+        if exif is not None and len(exif): # Write exif
             exifTree = QTreeWidget()
             exifTree.setStyleSheet('background: rgb(237, 255, 254)')
             data_exif = exif
-            del data_exif['GPSInfo']
-            self.write_tab(exifTree, data_exif)
+            del data_exif['GPSInfo'] # don't show gps in tab
+            self.write_tab(exifTree, data_exif) 
             exifTree.setHeaderLabel('Dettagli:')
-            
-        else:
+        else: # Exif not available
             exifTree = QLabel()
             exifTree.setAlignment(Qt.AlignCenter)
-            exifTree.setStyleSheet('background: rgb(237, 255, 254)')
+            exifTree.setStyleSheet('QLabel{background: rgb(237, 255, 254); border: 1px solid; font: italic 20px;}')
             exifTree.setText('Dati EXIF non disponibili')
 
         layout = QVBoxLayout()
-        layout.addWidget(exifTree)
+        layout.addWidget(exifTree) #
         tab_exif.setLayout(layout)
         self.ui.tabWidgetInf.addTab(tab_exif, "Exif")
 
-    def write_tab(self, widget, data):
+    def write_tab(self, widget, data): 
         self.widget = widget
         self.widget.clear()
-        self.writeData(self.widget.invisibleRootItem(), data)
+        self.writeData(self.widget.invisibleRootItem(), data) 
 
     ## QTreeWidgetItem
-    def writeData(self, item, data):
-        item.setExpanded(True)
+    def writeData(self, item, data): # Create tree of data in recursive way 
+        item.setExpanded(True) # Expand item of tree
         if type(data) is dict:
             for key, val in data.items():
                 child = QTreeWidgetItem()
@@ -198,7 +161,7 @@ class View(QMainWindow):
             else:
                 QMessageBox.about(self, "Errore", "Informazioni GPS non presenti")
     
-    # Resize image
+    # Resize image, if resize window
     def resizeEvent(self, ev):
         self.show_image()
         super().resizeEvent(ev)

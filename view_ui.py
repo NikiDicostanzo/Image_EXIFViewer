@@ -40,7 +40,6 @@ class View_ui(QLabel):
         self.pushButton_gps.clicked.connect(self.MainWindow.set_gps)
         self.pushButton_gps.setStyleSheet('QPushButton{background-color: rgb(255, 255, 255); font:bold;}')
 
-
         #Rot sx
         self.pushButton_rotL = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_rotL.setGeometry(QtCore.QRect(10, 560, 111, 41))
@@ -49,11 +48,10 @@ class View_ui(QLabel):
         icon.addPixmap(QtGui.QPixmap("icons/arrow-leftR.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_rotL.setIcon(icon)
         self.pushButton_rotL.setObjectName("pushButton_rotL")
-        self.pushButton_rotL.clicked.connect(self.MainWindow.rotate_left)
+        self.pushButton_rotL.clicked.connect(MainWindow.rotate_left)
         self.gridLayout.addWidget(self.pushButton_rotL, 1, 0, 1, 1)
         self.pushButton_rotL.setShortcut('q')
         self.pushButton_rotL.setStyleSheet('background-color: rgb(255, 255, 255);')
-
 
         #Rot dx
         self.pushButton_rotR = QtWidgets.QPushButton(self.centralwidget)
@@ -63,11 +61,10 @@ class View_ui(QLabel):
         icon1.addPixmap(QtGui.QPixmap("icons/arrow-rightR.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_rotR.setIcon(icon1)
         self.pushButton_rotR.setObjectName("pushButton_rotR")
-        self.pushButton_rotR.clicked.connect(self.MainWindow.rotate_right)
+        self.pushButton_rotR.clicked.connect(MainWindow.rotate_right)
         self.gridLayout.addWidget(self.pushButton_rotR, 1, 1, 1, 1)
         self.pushButton_rotR.setShortcut('w')
         self.pushButton_rotR.setStyleSheet('background-color: rgb(255, 255, 255);')
-
 
         #<- sx
         self.pushButton_L = QtWidgets.QPushButton(self.centralwidget)
@@ -98,10 +95,29 @@ class View_ui(QLabel):
         #Tab with all Data
         self.tabWidgetInf = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidgetInf.setGeometry(QtCore.QRect(450, 30, 391, 811))
-        self.tabWidgetInf.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.tabWidgetInf.setObjectName("tabWidgetInf")
         self.gridLayout.addWidget(self.tabWidgetInf, 0, 5, 1, 3)
-
+        self.tabWidgetInf.setStyleSheet(  
+                            "QWidget{background-color:rgb(255, 255, 255);}"
+                            "QTreeView{ background-color:  rgb(250, 255, 255);   \n"
+                            "   border: 1px solid;}\n"
+                            "QTreeView::branch{ \n"
+                            "    border-bottom: 1px solid rgb(210, 210, 210);}\n"
+                            "QTreeView::branch:closed:has-children {\n"
+                            "    border-image: none;\n"
+                            "    image: url(icons/tree_item_close.png);\n"
+                            "    padding:5px;}                          \n"
+                            "QTreeView::branch:open:has-children {\n"
+                            "    border-image: none;\n"
+                            "    image: url(icons/tree_item_open.png);\n"
+                            "    padding:5px;}\n"
+                            "QTreeWidget::item {\n"
+                            "   border-bottom: 1px solid rgb(216, 216, 216);}\n"
+                            "QHeaderView::section {          \n"
+                            "    padding: 2px;               \n"
+                            "    border: 0px solid;  \n"
+                            "    background: rgb(200, 220, 240);        \n"
+                            "    font: bold}                             \n")
         
         #My image in window
         self.label_image = QLabel(self.centralwidget)
@@ -112,10 +128,10 @@ class View_ui(QLabel):
         self.label_image.setAlignment(Qt.AlignCenter)
          # Rescaling
         self.label_image.setScaledContents(False)
-        self.label_image.setMinimumSize(300, 300)
-        self.label_image.setSizePolicy(QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-    
+        self.label_image.setMinimumSize(300, 300) # min size when window is resized 
+        self.label_image.setSizePolicy(QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding) # 
 
+        # Bar with Menu that contains "Open"
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 985, 22))
@@ -127,32 +143,32 @@ class View_ui(QLabel):
                                    ' QMenuBar::item::selected { background: rgb(200, 220, 240)}')
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
-        #self.menubar.setStyleSheet('background-color: #95B5D9')
         self.menu.setStyleSheet('QMenu{ background-color: rgb(255, 255, 255); font: bold; width: 100px; border-left:1px solid}')
-
-        self.MainWindow.setMenuBar(self.menubar)
+        # Open image
+        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.actionApri = QtWidgets.QAction(MainWindow)
         self.actionApri.setObjectName("actionApri")
+        self.actionApri.triggered.connect(MainWindow.add_image) 
         
         self.menu.addSeparator()
-        self.menu.addAction(self.actionApri)
+        self.menu.addAction(self.actionApri) # In future add other actions 
         self.menubar.addAction(self.menu.menuAction())
        
         self.retranslateUi(MainWindow)
-        self.tabWidgetInf.setCurrentIndex(0)
+        self.tabWidgetInf.setCurrentIndex(0) 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        MainWindow.setTabOrder(self.pushButton_gps, self.pushButton_rotL)
+        MainWindow.setTabOrder(self.pushButton_gps, self.pushButton_rotL) # Order all buttons
         MainWindow.setTabOrder(self.pushButton_rotL, self.pushButton_rotR)
         MainWindow.setTabOrder(self.pushButton_rotR, self.pushButton_L)
         MainWindow.setTabOrder(self.pushButton_L, self.pushButton_R)
         
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton_gps.setText(_translate("MainWindow", "GPS"))        
+        MainWindow.setWindowTitle(_translate("Viewer", "Viewer"))
+        self.pushButton_gps.setText(_translate("Viewer", "GPS"))        
 
-        self.menu.setTitle(_translate("MainWindow", "Menu"))
-        self.actionApri.setText(_translate("MainWindow", "Apri"))
+        self.menu.setTitle(_translate("Viewer", "Menu"))
+        self.actionApri.setText(_translate("Viewer", "Apri"))

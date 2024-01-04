@@ -1,13 +1,11 @@
-# Import stuff
 import sys
 from PyQt5.QtWidgets import QApplication
 from model import Model
 from controller import Controller
 from view import View
 
-# Use a __main__ guard, you never know.
 if __name__ == '__main__':
-    # Create our application -- MUST be done first.
+    # Create our application 
     app = QApplication(sys.argv)
 
     # MVC
