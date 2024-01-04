@@ -1,5 +1,5 @@
 # Image*EXIFViewer*
-Questo progetto ha lo scopo di implementare una semplice applicazione di visualizzazione delle immagini JPEG e dei dati EXIF associati. Utilizza Python come linguaggio di programmazione e PyQt5 come toolkit della GUI. Il progetto adotta il modello Model-View-Controller (MVC) per separare le responsabilità relative ai dati (Model), all'interfaccia utente (View) e alla logica di controllo (Controller).
+Questo progetto ha lo scopo di implementare una semplice applicazione di visualizzazione delle immagini e dei dati EXIF associati. Utilizza *Python* come linguaggio di programmazione e *PyQt5* come toolkit della GUI. Il progetto adotta il modello Model-View-Controller (MVC) per separare le responsabilità relative ai dati (Model), all'interfaccia utente (View) e alla logica di controllo (Controller).
 
 ## Installazione
 Per installare le dipendenze necessarie per eseguire il progetto digitare i seguenti comandi:
@@ -32,23 +32,23 @@ Per eseguire il progetto, usa il seguente comando:
 ```
     python main.py
 ```
-## File
-* main.py:
-* model.py:
-* view.py:
-* view_ui.py:
-* controller.py:
   
 ## Struttura del progetto
 
 * **Model**: contiene tutte le informazioni necessarie per elaborare l'immagine e i suoi dati EXIF (se disponibili), include l'immagine corrente e la lista di tutte le immagini presenti. 
 
-* **View**: definisce l'aspetto della finestra principale e collega i suoi pulsanti alle funzioni del controller. La view è stata creata utilizzando *Qt Designer*. Il comando usato per generare il codice Python da un file `.ui` è il seguente:
+* **View**: definisce l'aspetto della finestra principale e collega i suoi pulsanti alle funzioni del Controller. La View è stata creata utilizzando *Qt Designer*. Il comando usato per generare il codice Python da un file `.ui` è il seguente:
 ```
-    pyuic5 -x prova1.ui -o prova1.py
+    pyuic5 -x nome.ui -o nome.py
 ```
-* **Controller**: carica e salva l'immagine (gestisce l'I/O). Il controller gestisce l'input/output dell'immagine. Carica e salva l'immagine, e agisce come osservatore del soggetto della view.
+* **Controller**: carica e salva l'immagine (gestisce l'I/O). Interpreta le informazioni del Model per la View.
 
+## File
+* main.py: inizializza le classi Model, Controller e View e avvia l'event loop dell'applicazione.
+* model.py: contiene il Model dei dati e la business logic dell'applicazione. 
+* view.py: gestisce l'interfaccia utente dell'applicazione. Ha metodi per visualizzare le immagini, gestire le interazioni dell'utente e aggiornare la visualizzazione.
+* view_ui.py: contiene l'implementazione dell'interfaccia utente. Utilizza PyQt5 per definire il layout della finestra principale.
+* controller.py: definisce il Controller, che agisce come intermediario tra il Model e la View. 
 
 ## Screen
 
