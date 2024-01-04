@@ -1,6 +1,6 @@
 # Import stuff
 import sys
-from PyQt5.QtWidgets import QApplication, QPushButton, QMainWindow
+from PyQt5.QtWidgets import QApplication
 from model import Model
 from controller import Controller
 from view import View

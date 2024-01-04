@@ -44,7 +44,6 @@ class Model:
             self.info['Dimensione immagine'] = image.size
             self.info['Data creazione'] = time.ctime(os.path.getctime(image.filename))
             self.info['Ultima modifica'] = time.ctime(os.path.getmtime(image.filename))
-            #print("INFO", self.info)
     
     def save_exif(self):
         self.exif={}
@@ -64,19 +63,13 @@ class Model:
                                     if k in TAGS
                             }
             if  'GPSInfo' in self.exif.keys():
-              # print("GPS", len(self.exif['GPSInfo']), '\n', self.exif['GPSInfo'])
                lat = self.convert_coordinates(self.exif['GPSInfo'][1], self.exif['GPSInfo'][2])
                lon = self.convert_coordinates(self.exif['GPSInfo'][3], self.exif['GPSInfo'][4])
                self.gps = str(lat) + "," + str(lon)
-               
-               #print('Latitudine: ', lat, "Longitudine: ", lon)
-               # {1: 'N', 2: (43.0, 43.0, 37.3044), 3: 'E', 4: (11.0, 5.0, 45.8915)..}
                # degrees, minutes, and seconds
-            #print("Exif data: ",self.exif)
 
     ##latitude and longitude to decimal degrees          
     def convert_coordinates(self, cardinal, value):
-     
         deg, min, sec = value # E e O sono positivi
         if cardinal in ['S', 'W']:
             deg = -deg

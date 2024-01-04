@@ -9,6 +9,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QLabel, QGridLayout, QSizePolicy
 from PyQt5.QtCore import Qt, QSize
+
+#helps in setting up the UI components
 class View_ui(QLabel):
 
     def __init__(self, MainWindow, controller):
@@ -111,19 +113,22 @@ class View_ui(QLabel):
          # Rescaling
         self.label_image.setScaledContents(False)
         self.label_image.setMinimumSize(300, 300)
-        self.label_image.setSizePolicy(
-        QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.label_image.setSizePolicy(QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
     
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 985, 22))
         self.menubar.setObjectName("menubar")
-        self.menubar.setStyleSheet('QMenuBar{ font: bold;}')
+        self.menubar.setStyleSheet('QMenuBar{ font: bold; border-bottom:2px solid #96AED0;}\n'
+                                   ' QMenuBar::item { \n'
+                                   ' border-right: 1px solid #96AED0;\n'
+                                   ' padding: 7px; padding-left:18px; padding-right:18px}'
+                                   ' QMenuBar::item::selected { background: rgb(200, 220, 240)}')
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
         #self.menubar.setStyleSheet('background-color: #95B5D9')
-        self.menu.setStyleSheet('QMenu{ background-color: rgb(255, 255, 255); font: bold;}')
+        self.menu.setStyleSheet('QMenu{ background-color: rgb(255, 255, 255); font: bold; width: 100px; border-left:1px solid}')
 
         self.MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -151,14 +156,3 @@ class View_ui(QLabel):
 
         self.menu.setTitle(_translate("MainWindow", "Menu"))
         self.actionApri.setText(_translate("MainWindow", "Apri"))
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
-
